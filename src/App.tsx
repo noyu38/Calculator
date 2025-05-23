@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Display from './components/Display';
 import Button from './components/Button';
 import './App.css';
@@ -8,7 +8,7 @@ function App() {
   const [displayValue, setDisplayValue] = useState<string>('0'); // 画面に表示されている値
   const [currentValue, setCurrentValue] = useState<number | null>(null); // 現在の計算結果
   const [operator, setOperator] = useState<Operator | null>(null); // 演算子
-  const [waitingForOperand, setWaitingForOperand] = useState<boolean>(false); // 演算子を待っているかどうか
+  const [waitingForOperand, setWaitingForOperand] = useState<boolean>(false); // 演算子ボタンを押した後かどうか
   const [expression, setExpression] = useState<string>(''); // 計算式全体を表示する
 
   // 数字ボタンが押されたときの処理
@@ -109,17 +109,9 @@ function App() {
 
   
   /* TODO: 以下の処理を実装する
-   * - (完了)すでに演算子ボタンが押されている状態で他の演算子ボタンが押されたとき、前の演算子を上書きする
-   *   (例：前の演算子が+で、今回は*が押された場合、前の演算子を*に上書きする)
-   * 
-   * - 小数点ボタンが押された後、数字ボタンが押された場合、小数点以下に数字を追加する
-   *   (例：1を押した後に.を押し、その後2を押した場合、1.2と表示されるようにする)
-   * 
-   * - 現在、演算子ボタンが複数回押されたとき、例えば、5を押した後に+を3回押すと、20と表示されるようになってしまっている
-   *   これを修正する。5を押した後に+を3回押す場合、15と表示されるように変更する
-   * 
    * - 表示形式を変更する。具体的には、イコールボタンを押すまでに入力したボタンの内容をすべて表示する
    *   (例：押したボタンが5 → + → 2 → - → 3と入力したとき、5+2-3と表示されるようにする)
+   *   →(追加)現在イコールボタンを押すと表示がリセットされるようになっている。イコールボタンを押したあとにまた演算子ボタンを押すと意図していない表示になってしまうので、修正する
   */
   return (
     <>
